@@ -6,6 +6,7 @@
   "scripts": {
     "commit": "npx cz",
     "lint": "npx eslint \"src/**/*.{ts,json}\"",
+    "test": "npx vitest",
     "format": "npx prettier --write \"src/**/*.{ts,json}\"",
     "format:check": "npx prettier --check \"src/**/*.{ts,json}\"",
     "build": "rimraf dist && npx tsup",
