@@ -1,0 +1,48 @@
+{
+  "name": "text-warden",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "commit": "npx cz",
+    "lint": "npx eslint \"src/**/*.{ts,json}\"",
+    "format": "npx prettier --write \"src/**/*.{ts,json}\"",
+    "format:check": "npx prettier --check \"src/**/*.{ts,json}\"",
+    "build": "rimraf dist && npx tsup",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,md}": "prettier --write"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^2.29.5",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.30.1",
+    "@types/node": "^24.0.10",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.30.1",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1"
+  }
+}
