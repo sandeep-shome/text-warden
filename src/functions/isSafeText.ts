@@ -1,30 +1,45 @@
 import unsafeWords from '../data/unsafeWords.json';
+import { IsSafeTextOptions } from '../types';
 
 /**
- * Checks whether the given text contains any unsafe or profane words.
+ * Checks if the given text is safe by detecting unsafe or profane words.
  *
- * This function normalizes the input by converting it to lowercase
- * and removing punctuation before comparing each word against a predefined
- * list of unsafe words.
- *
- * @param text - The text to validate for unsafe words.
- * @returns Returns `true` if the text is safe (no bad words), `false` otherwise.
- *
- * @example
- * isSafeText("Hello world"); // true
- * isSafeText("This is shit"); // false
+ * @param text - The input text to validate.
+ * @param option - Optional configuration for custom and default word handling.
+ * @returns `true` if the text is safe, `false` if unsafe, or `null` if invalid config.
  */
-const isSafeText = (text: string): boolean => {
+export const isSafeText = (text: string, option?: IsSafeTextOptions): boolean | null => {
   const words: string[] = text
-    .toLocaleLowerCase()
+    .toLowerCase()
     .replace(/[^\w\s]/g, '')
     .split(/\s+/);
 
-  for (const word of words) {
-    if (unsafeWords.includes(word)) {
-      return false;
+  const { extendUnsafeWords, skipChecksFor, disableDefaultUnsafeWords } = option || {};
+
+  // Error if user disables default words without providing custom ones
+  if (disableDefaultUnsafeWords && (!extendUnsafeWords || extendUnsafeWords.length === 0)) {
+    console.error(
+      '[ERROR]: default unsafe words are disabled, but extendUnsafeWords are not provided',
+    );
+    return null;
+  }
+
+  // Check against custom words
+  if (extendUnsafeWords) {
+    for (const word of words) {
+      if (extendUnsafeWords.includes(word)) return false;
     }
   }
+
+  // If not disabled, check against default unsafe words
+  if (!disableDefaultUnsafeWords) {
+    for (const word of words) {
+      if (unsafeWords.includes(word) && !skipChecksFor?.includes(word)) {
+        return false;
+      }
+    }
+  }
+
   return true;
 };
 
