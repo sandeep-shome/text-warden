@@ -1,8 +1,14 @@
 {
   "name": "text-warden",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A lightweight utility library for detecting and sanitizing sensitive or unsafe text content in strings. Ideal for filtering offensive words, enforcing content policies, or building text moderation features in Node.js and frontend applications",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.js",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.mjs"
+  },
   "scripts": {
     "commit": "npx cz",
     "lint": "npx eslint \"src/**/*.{ts,json}\"",
@@ -10,6 +16,7 @@
     "format": "npx prettier --write \"src/**/*.{ts,json}\"",
     "format:check": "npx prettier --check \"src/**/*.{ts,json}\"",
     "build": "rimraf dist && npx tsup",
+    "release": "npm run build && changeset publish",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -24,8 +31,25 @@
       "path": "cz-conventional-changelog"
     }
   },
-  "keywords": [],
-  "author": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "moderation",
+    "profanity",
+    "sanitizer",
+    "filter",
+    "censorship",
+    "validation",
+    "security"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sandeep-shome/text-warden.git"
+  },
+  "homepage": "https://github.com/sandeep-shome/text-warden#readme",
+  "readme": "https://github.com/sandeep-shome/text-warden#readme",
+  "author": "Sandeep Shome",
   "license": "MIT",
   "devDependencies": {
     "@changesets/cli": "^2.29.5",
