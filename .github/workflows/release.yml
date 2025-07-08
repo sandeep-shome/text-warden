@@ -1,0 +1,52 @@
+name: 🚀 Release Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: 🔁 Version, Test, Build & Publish
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # Required to push tags and commits
+      packages: write
+      id-token: write
+
+    steps:
+      - name: ⬇️ Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: ✅ Run Tests
+        run: npm test
+
+      - name: 🏗️ Build the project
+        run: npm run build
+
+      - name: 🚀 Version & Publish with Changesets
+        uses: changesets/action@v1
+        with:
+          publish: npm run release
+          commit: 'chore(release): version bump'
+          title: '🔖 Release new version'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 🏷️ Tag the new version
+        if: steps.publish.outputs.published == 'true'
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          git tag v$VERSION
+          git push origin v$VERSION
