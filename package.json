@@ -16,7 +16,8 @@
     "format": "npx prettier --write \"src/**/*.{ts,json}\"",
     "format:check": "npx prettier --check \"src/**/*.{ts,json}\"",
     "build": "rimraf dist && npx tsup",
-    "release": "npm run build && changeset publish",
+    "version:bump": "npx changeset version",
+    "publish": "npm publish",
     "prepare": "husky"
   },
   "lint-staged": {
