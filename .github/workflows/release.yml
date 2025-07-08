@@ -1,4 +1,4 @@
-name: 🚀 Release Package
+name: 🚀 Manual Publish to npm
 
 on:
   push:
@@ -6,14 +6,12 @@ on:
       - main
 
 jobs:
-  release:
-    name: 🔁 Version, Test, Build & Publish
+  publish:
+    name: 📦 Test, Build & Publish
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # Required to push tags and commits
-      packages: write
-      id-token: write
+      contents: write # Required to push tags
 
     steps:
       - name: ⬇️ Checkout repository
@@ -34,18 +32,12 @@ jobs:
       - name: 🏗️ Build the project
         run: npm run build
 
-      - name: 🚀 Version & Publish with Changesets
-        uses: changesets/action@v1
-        with:
-          publish: npm run release
-          commit: 'chore(release): version bump'
-          title: '🔖 Release new version'
+      - name: 🚀 Publish to npm
+        run: npm run publish
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: 🏷️ Tag the new version
-        if: steps.publish.outputs.published == 'true'
+      - name: 🏷️ Create Git tag
         run: |
           VERSION=$(node -p "require('./package.json').version")
           git tag v$VERSION
