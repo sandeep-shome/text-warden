@@ -5,6 +5,7 @@
 /__tests__
 /temp
 /.changeset
+/.github
 
 # Exclude development/config files
 .prettierignore
