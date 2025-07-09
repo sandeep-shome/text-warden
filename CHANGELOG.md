@@ -1,5 +1,11 @@
 # text-warden
 
+## 0.2.3
+
+### Patch Changes
+
+- Upgrade node.js version @20 for CI/CD
+
 ## 0.2.2
 
 ### Patch Changes
