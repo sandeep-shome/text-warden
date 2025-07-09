@@ -21,3 +21,4 @@ commitlint.config.mjs
 # Exclude documentation not needed in the package
 CONTRIBUTING.md
 CHANGELOG.md
+CODE_OF_CONDUCT.md

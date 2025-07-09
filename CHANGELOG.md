@@ -1,5 +1,12 @@
 # text-warden
 
+## 0.2.4
+
+### Patch Changes
+
+- Add CODE_OF_CONDUCT doc
+- Add build passing badge in README.md
+
 ## 0.2.3
 
 ### Patch Changes
