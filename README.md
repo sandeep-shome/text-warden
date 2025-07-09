@@ -1,4 +1,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+![NPM Unpacked Size (with version)](https://img.shields.io/npm/unpacked-size/text-warden/0.2.1)
+![GitHub Release](https://img.shields.io/github/v/release/sandeep-shome/text-warden)
+![NPM Downloads](https://img.shields.io/npm/dm/text-warden)
 
 # text-warden
 
