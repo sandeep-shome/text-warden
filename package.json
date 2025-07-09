@@ -1,6 +1,6 @@
 {
   "name": "text-warden",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A lightweight utility library for detecting and sanitizing sensitive or unsafe text content in strings. Ideal for filtering offensive words, enforcing content policies, or building text moderation features in Node.js and frontend applications",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -16,8 +16,9 @@
     "format": "npx prettier --write \"src/**/*.{ts,json}\"",
     "format:check": "npx prettier --check \"src/**/*.{ts,json}\"",
     "build": "rimraf dist && npx tsup",
+    "version": "npx changeset",
     "version:bump": "npx changeset version",
-    "publish": "npm publish",
+    "release": "npm publish",
     "prepare": "husky"
   },
   "lint-staged": {
