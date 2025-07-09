@@ -1,5 +1,11 @@
 # text-warden
 
+## 0.2.2
+
+### Patch Changes
+
+- Add badges in readme docs
+
 ## 0.2.1
 
 ### Patch Changes

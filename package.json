@@ -1,6 +1,6 @@
 {
   "name": "text-warden",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A lightweight utility library for detecting and sanitizing sensitive or unsafe text content in strings. Ideal for filtering offensive words, enforcing content policies, or building text moderation features in Node.js and frontend applications",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
